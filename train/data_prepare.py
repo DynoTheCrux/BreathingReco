@@ -47,20 +47,24 @@ def prepare_original_data(folder, name, data, file_to_read):  # pylint: disable=
   if os.path.isfile(file_to_read):
     with open(file_to_read, "r") as f:
       lines = csv.reader(f)
+      # print(lines.line_num)
       data_new = {}
       data_new[LABEL_NAME] = folder
       data_new[DATA_NAME] = []
       data_new["name"] = name
       for idx, line in enumerate(lines):  # pylint: disable=unused-variable,redefined-outer-name
-        if len(line) == 3:
-          if line[2] == "-" and data_new[DATA_NAME] or (folder == "negative" and len(data_new[DATA_NAME]) == 120):
+        # print(len(line))
+        if len(line) == 1:
+          # print(line[0])
+          # print(data_new[DATA_NAME])
+          if line[0] == "-" and data_new[DATA_NAME] or (folder == "negative" and len(data_new[DATA_NAME]) == 120):
             data.append(data_new)
             data_new = {}
             data_new[LABEL_NAME] = folder
             data_new[DATA_NAME] = []
             data_new["name"] = name
-          elif line[2] != "-":
-            data_new[DATA_NAME].append([float(i) for i in line[0:3]])
+          elif line[0] != "-":
+            data_new[DATA_NAME].append([float(i) for i in line])
       data.append(data_new)
 
 # def generate_negative_data(data, number_samples):  # pylint: disable=redefined-outer-name

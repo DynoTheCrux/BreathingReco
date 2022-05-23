@@ -27,17 +27,17 @@ import tensorflow as tf
 
 from data_augmentation import augment_data
 
-LABEL_NAME = "gesture"
-DATA_NAME = "accel_ms2_xyz"
+LABEL_NAME = "BreathingPattern"
+DATA_NAME = "LEAP"
 
 
 class DataLoader(object):
   """Loads data and prepares for training."""
   def __init__(self, train_data_path, valid_data_path, test_data_path,
                seq_length):
-    self.dim = 3
+    self.dim = 1
     self.seq_length = seq_length
-    self.label2id = {"wing": 0, "ring": 1, "slope": 2, "negative": 3}
+    self.label2id = {"Eupnea": 0, "Apnoe": 1}
     self.train_data, self.train_label, self.train_len = self.get_data_file(
         train_data_path, "train")
     self.valid_data, self.valid_label, self.valid_len = self.get_data_file(
