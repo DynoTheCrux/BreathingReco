@@ -34,17 +34,11 @@ import os
 import random
 import math
 
-LABEL_NAME = "gesture"
-DATA_NAME = "accel_ms2_xyz"
-folders = ["wing", "ring", "slope"]
+LABEL_NAME = "BreathingPattern"
+DATA_NAME = "LEAP"
+folders = ["Eupnea", "Apnoe"]
 names = [
-    "stefan",
-    "patrick",
-    "justin",
-    "yeongmi",
-    "arthur",
-    "kai",
-    "nico"
+    "Simon"
 ]
 
 
@@ -69,60 +63,60 @@ def prepare_original_data(folder, name, data, file_to_read):  # pylint: disable=
             data_new[DATA_NAME].append([float(i) for i in line[0:3]])
       data.append(data_new)
 
-def generate_negative_data(data, number_samples):  # pylint: disable=redefined-outer-name
-  """Generate negative data labeled as 'negative6~8'."""
+# def generate_negative_data(data, number_samples):  # pylint: disable=redefined-outer-name
+  # """Generate negative data labeled as 'negative6~8'."""
   # Big movement -> around straight line
-  for i in range(number_samples//3):
-    if i > 80:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative8"}
-    elif i > 60:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative7"}
-    else:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative6"}
-    start_x = (random.random() - 0.5) * 30
-    start_y = (random.random() - 0.5) * 30
-    start_z = (random.random() - 0.5) * 30
-    x_increase = (random.random() - 0.5)
-    y_increase = (random.random() - 0.5)
-    z_increase = (random.random() - 0.5)
-    for j in range(128):
-      dic[DATA_NAME].append([
-          start_x + j * x_increase + (random.random() - 0.5) * 0.6,
-          start_y + j * y_increase + (random.random() - 0.5) * 0.6,
-          start_z + j * z_increase + (random.random() - 0.5) * 0.6
-      ])
-    data.append(dic)
-  # Random
-  for i in range(number_samples//3):
-    if i > 80:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative8"}
-    elif i > 60:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative7"}
-    else:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative6"}
-    for j in range(128):
-      dic[DATA_NAME].append([(random.random() - 0.5) * 50,
-                             (random.random() - 0.5) * 50,
-                             (random.random() - 0.5) * 50])
-    data.append(dic)
-  # Stay still
-  for i in range(number_samples//3):
-    if i > 80:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative8"}
-    elif i > 60:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative7"}
-    else:
-      dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative6"}
-    start_x = (random.random() - 0.5) * 2
-    start_y = (random.random() - 0.5) * 2
-    start_z = (random.random() - 0.5) * 2
-    for j in range(128):
-      dic[DATA_NAME].append([
-          start_x + (random.random() - 0.5) * 0.4,
-          start_y + (random.random() - 0.5) * 0.4,
-          start_z + (random.random() - 0.5) * 0.4
-      ])
-    data.append(dic)
+  # for i in range(number_samples//3):
+    # if i > 80:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative8"}
+    # elif i > 60:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative7"}
+    # else:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative6"}
+    # start_x = (random.random() - 0.5) * 30
+    # start_y = (random.random() - 0.5) * 30
+    # start_z = (random.random() - 0.5) * 30
+    # x_increase = (random.random() - 0.5)
+    # y_increase = (random.random() - 0.5)
+    # z_increase = (random.random() - 0.5)
+    # for j in range(128):
+      # dic[DATA_NAME].append([
+          # start_x + j * x_increase + (random.random() - 0.5) * 0.6,
+          # start_y + j * y_increase + (random.random() - 0.5) * 0.6,
+          # start_z + j * z_increase + (random.random() - 0.5) * 0.6
+      # ])
+    # data.append(dic)
+  #Random
+  # for i in range(number_samples//3):
+    # if i > 80:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative8"}
+    # elif i > 60:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative7"}
+    # else:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative6"}
+    # for j in range(128):
+      # dic[DATA_NAME].append([(random.random() - 0.5) * 50,
+                             # (random.random() - 0.5) * 50,
+                             # (random.random() - 0.5) * 50])
+    # data.append(dic)
+  #Stay still
+  # for i in range(number_samples//3):
+    # if i > 80:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative8"}
+    # elif i > 60:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative7"}
+    # else:
+      # dic = {DATA_NAME: [], LABEL_NAME: "negative", "name": "negative6"}
+    # start_x = (random.random() - 0.5) * 2
+    # start_y = (random.random() - 0.5) * 2
+    # start_z = (random.random() - 0.5) * 2
+    # for j in range(128):
+      # dic[DATA_NAME].append([
+          # start_x + (random.random() - 0.5) * 0.4,
+          # start_y + (random.random() - 0.5) * 0.4,
+          # start_z + (random.random() - 0.5) * 0.4
+      # ])
+    # data.append(dic)
 
 
 # Write data to file
@@ -140,22 +134,22 @@ if __name__ == "__main__":
     for idx2, name in enumerate(names):
       prepare_original_data(folder, name, data,
                             "./data/%s/output_%s_%s.txt" % (folder, folder, name))
-  n_gestures = len(data)
-  for idx, name in enumerate(names):
-    prepare_original_data("negative", name, data,
-                          "./data/negative/output_negative_%s.txt" % (name))
-  n_negative = len(data) - n_gestures
+  n_patterns = len(data)
+  # for idx, name in enumerate(names):
+    # prepare_original_data("negative", name, data,
+                          # "./data/negative/output_negative_%s.txt" % (name))
+  # n_negative = len(data) - n_gestures
 
   # if there are more than 10% more gesture samples per gesture as negative samples, generate additional negative
   # samples
-  if n_gestures - n_negative * len(folders) > n_gestures/len(folders) * 0.1:
-    print("not enough negative samples available, creating random data samples")
-    generate_negative_data(data, (math.ceil(n_gestures/len(folders)) - n_negative))
-  n_negative = len(data) - n_gestures
+  # if n_gestures - n_negative * len(folders) > n_gestures/len(folders) * 0.1:
+    # print("not enough negative samples available, creating random data samples")
+    # generate_negative_data(data, (math.ceil(n_gestures/len(folders)) - n_negative))
+  # n_negative = len(data) - n_gestures
 
-  print("gesture_data_length: " + str(n_gestures))
-  print("negative_data_length: " + str(n_negative))
-  print("data_length: " + str(len(data)))
+  print("data_length: " + str(n_patterns))
+  # print("negative_data_length: " + str(n_negative))
+  # print("data_length: " + str(len(data)))
 
   # if not os.path.exists("./data"):
   #   os.makedirs("./data")
