@@ -38,7 +38,12 @@ LABEL_NAME = "BreathingPattern"
 DATA_NAME = "LEAP"
 folders = ["Eupnea", "Apnoe"]
 names = [
-    "Simon"
+    "Simon0",
+    "Simon1",
+    "Simon2",
+    "Simon3",
+    "Simon4",
+    "Simon5",
 ]
 
 
