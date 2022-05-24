@@ -43,7 +43,7 @@ names = [
     "Simon2",
     "Simon3",
     "Simon4",
-    "Simon5",
+    "Simon5"
 ]
 
 
