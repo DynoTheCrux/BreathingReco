@@ -55,30 +55,17 @@ def build_cnn(seq_length):
           padding="same",
           activation="relu",
           input_shape=(seq_length, 1, 1)),  # output_shape=(batch, 128, 3, 8)
-      tf.keras.layers.MaxPool2D((3, 1)),  # (batch, 42, 1, 8)
-      tf.keras.layers.Dropout(0.1),  # (batch, 42, 1, 8)
-      tf.keras.layers.Conv2D(16, (4, 1), padding="same",
-                             activation="relu"),  # (batch, 42, 1, 16)
+      # tf.keras.layers.MaxPool2D((3, 1)),  # (batch, 42, 1, 8)
+      # tf.keras.layers.Dropout(0.1),  # (batch, 42, 1, 8)
+      # tf.keras.layers.Conv2D(16, (4, 1), padding="same",
+      #                        activation="relu"),  # (batch, 42, 1, 16)
       tf.keras.layers.MaxPool2D((1, 1), padding="same"),  # (batch, 14, 1, 16)
       tf.keras.layers.Dropout(0.1),  # (batch, 14, 1, 16)
       tf.keras.layers.Flatten(),  # (batch, 224)
-      tf.keras.layers.Dense(16, activation="relu"),  # (batch, 16)
+      tf.keras.layers.Dense(16, activation="softmax"),  # (batch, 16)
       tf.keras.layers.Dropout(0.1),  # (batch, 16)
       tf.keras.layers.Dense(4, activation="softmax")  # (batch, 4)
   ])
-
-  # inputs = tf.keras.layers.Input(shape=(seq_length, 1, 1))
-  # x = tf.keras.layers.Conv2D(16, kernel_size=15, activation='relu', padding='same')(inputs)
-  # x = tf.keras.layers.BatchNormalization()(x)
-  # x = tf.keras.layers.ReLU()(x)
-  # x = tf.keras.layers.Conv2D(16, kernel_size=5, activation='relu', padding='same')(x)
-  # x = tf.keras.layers.BatchNormalization()(x)
-  # x = tf.keras.layers.ReLU()(x)
-  # x = tf.keras.layers.Conv2D(16, kernel_size=3, activation='relu', padding='same')(x)
-  # x = tf.keras.layers.Flatten()(x)
-  # x = tf.keras.layers.Dense(16)(x)
-  # outputs = tf.keras.layers.Dense(2, activation="softmax")(x)
-  # model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
   model_path = os.path.join("./netmodels", "CNN")
   print("Built CNN.")
   if not os.path.exists(model_path):
@@ -92,7 +79,7 @@ def build_lstm(seq_length):
   model = tf.keras.Sequential([
       tf.keras.layers.Bidirectional(
           tf.keras.layers.LSTM(22),
-          input_shape=(seq_length, 3)),  # output_shape=(batch, 44)
+          input_shape=(seq_length, 1)),  # output_shape=(batch, 44)
       tf.keras.layers.Dense(4, activation="sigmoid")  # (batch, 4)
   ])
   model_path = os.path.join("./netmodels", "LSTM")
@@ -135,7 +122,7 @@ def train_net(
   """Trains the model."""
   calculate_model_size(model)
   epochs = 20
-  batch_size = 32
+  batch_size = 16
   model.compile(optimizer="adam",
                 loss="sparse_categorical_crossentropy",
                 metrics=["accuracy"])
