@@ -153,6 +153,9 @@ def train_net(
   print("Loss {}, Accuracy {}".format(loss, acc))
   # Convert the model to the TensorFlow Lite format without quantization
   converter = tf.lite.TFLiteConverter.from_keras_model(model)
+  # only needed for LSTM
+  # converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+  # converter._experimental_lower_tensor_list_ops = False
   tflite_model = converter.convert()
 
   # Save the model to disk
@@ -161,6 +164,9 @@ def train_net(
   # Convert the model to the TensorFlow Lite format with quantization
   converter = tf.lite.TFLiteConverter.from_keras_model(model)
   converter.optimizations = [tf.lite.Optimize.DEFAULT]
+  # only needed for LSTM
+  # converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+  # converter._experimental_lower_tensor_list_ops = False
   tflite_model = converter.convert()
 
   # Save the model to disk
