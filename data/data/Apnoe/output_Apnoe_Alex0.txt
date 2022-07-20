@@ -1,21 +1,4 @@
 -
-
-Not Testing, Array: 
-Go to PROCESS, Array: 
-Absolute Max: 770
-Absolute Min: 723
-
-Median Max: 790
-Median Min: 674
-Calculating Period
-Time Diff Min: 
-Time Diff Max: 
-Calculating Period Median
-14.00
-0.00
-Average Period: 
-7.00
-
 0.64
 0.64
 0.64
@@ -253,8 +236,7 @@ Average Period:
 0.80
 0.80
 0.80
-0
-.82
+0.82
 0.80
 0.80
 0.79
@@ -574,8 +556,7 @@ Average Period:
 0.83
 0.82
 0.82
-0.8
-0
+0.80
 0.80
 0.79
 0.79
@@ -587,8 +568,7 @@ Average Period:
 0.77
 0.76
 0.75
-0.7
-6
+0.76
 0.76
 0.76
 0.76
@@ -716,8 +696,7 @@ Average Period:
 0.82
 0.79
 0.82
-0.7
-8
+0.78
 0.78
 0.78
 0.77
@@ -809,8 +788,7 @@ Average Period:
 0.70
 0.69
 0.70
-0
-.70
+0.70
 0.70
 0.72
 0.72
@@ -998,8 +976,7 @@ Average Period:
 0.44
 0.44
 0.44
-0.
-46
+0.46
 0.46
 0.46
 0.48
@@ -1117,8 +1094,7 @@ Average Period:
 0.85
 0.86
 0.86
-0.
-85
+0.85
 0.85
 0.85
 0.85
@@ -1359,8 +1335,7 @@ Average Period:
 0.82
 0.82
 0.83
-0.
-83
+0.83
 0.83
 0.84
 0.83
