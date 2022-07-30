@@ -141,7 +141,7 @@ def train_net(
   model.fit(train_data,
             epochs=epochs,
             validation_data=valid_data,
-            steps_per_epoch=1000,
+            steps_per_epoch=NULL,
             validation_steps=int((valid_len - 1) / batch_size + 1),
             callbacks=[tensorboard_callback])
   loss, acc = model.evaluate(test_data)
