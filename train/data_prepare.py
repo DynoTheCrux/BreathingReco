@@ -44,6 +44,8 @@ names = [
     # "Simon3",
     # "Simon4",
     # "Simon5",
+    "Simon6",
+    "Simon7",
     "Mati0",
     "Mati1",
     "Mati2",
