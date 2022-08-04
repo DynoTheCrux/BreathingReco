@@ -15,3 +15,6 @@ Setup the Arduino IDE to support the Arduino Nano BLE Sense by installing it via
 #### LEAP Stretch Sensor 
 
 The stretch sensor was used with a small circuit allowing to measure discharge time. More information see https://leaptechnology.com/product/stretch-sensors and https://circuits4you.com/2016/05/13/capacitance-measurement-arduino/ 
+
+
+# ADD Changes
