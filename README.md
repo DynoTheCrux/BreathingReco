@@ -1,6 +1,6 @@
-# MagicWand-TFLite-ESP32-MPU6050
+# Respiratory Distress Recognition
 
-This Project contains all necessary code and scripts to train a gesture recognition model ([TensorFlow Lite](https://tensorflow.org/lite/microcontrollers/overview)) usable with an ESP32 and a MPU6050 IMU.
+This Project contains all necessary code and scripts to train a respiratory distress recognition model ([TensorFlow Lite](https://tensorflow.org/lite/microcontrollers/overview)) usable with an Arduino Nano BLE Sense and a LEAP capacitive stretch sensor.
 
 ## Setup
 
@@ -8,13 +8,13 @@ This Project contains all necessary code and scripts to train a gesture recognit
 
 For installation instructions see <https://www.arduino.cc/en/software>.
 
-#### ESP32 Support
+#### Arduino Nano BLE Sense Support
 
-Setup the Arduino IDE to support ESP32 microcontrollers following the instructions on the espressif documentation page: <https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html>. The version used in this project was 2.0.2
+Setup the Arduino IDE to support the Arduino Nano BLE Sense by installing it via the Boards manager. Version used was 3.0.1.
 
-#### MPU6050 Support
+#### LEAP Stretch Sensor 
 
-Install the Adafruit MPU6050 library for the IMU using the Library Manager of the Arduino IDE. Instructions on how to install libraries for the Arduino IDE can be found at <https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries> and the library is available on github at <https://github.com/adafruit/Adafruit_MPU6050>. In the Library Manager it is called **Adafruit MPU6050** and the project was tested with version 2.0.5. 
+The stretch sensor was used with a small circuit allowing to measure discharge time. More information see https://leaptechnology.com/product/stretch-sensors and https://circuits4you.com/2016/05/13/capacitance-measurement-arduino/ 
 
 #### TensorFlowLite for ESP32
 
