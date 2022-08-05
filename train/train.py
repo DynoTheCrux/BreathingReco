@@ -51,7 +51,7 @@ def build_cnn(seq_length):
   """Builds a convolutional neural network in Keras."""
   model = tf.keras.Sequential([
       tf.keras.layers.Conv2D(
-          8, (4, 3),
+          8, (4, 1),
           padding="same",
           activation="relu",
           input_shape=(seq_length, 1, 1)),  # output_shape=(batch, 128, 3, 8)
@@ -121,7 +121,7 @@ def train_net(
     kind):
   """Trains the model."""
   calculate_model_size(model)
-  epochs = 50
+  epochs = 32
   batch_size = 16
   model.compile(optimizer="adam",
                 loss="sparse_categorical_crossentropy",
