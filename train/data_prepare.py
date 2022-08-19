@@ -46,11 +46,12 @@ names = [
     # "Simon5",
     "Simon6",
     "Simon7",
-    "Mati0",
-    "Mati1",
-    "Mati2",
+    "Mati3",
+    # "Mati1",
+    # "Mati2",
     "Alex0",
-    "Christian0"
+    "Christian0",
+    "Kevin0"
 ]
 
 
