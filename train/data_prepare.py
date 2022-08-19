@@ -50,8 +50,8 @@ names = [
     # "Mati1",
     # "Mati2",
     "Alex0",
-    "Christian0",
-    "Kevin0"
+    "Christian0"
+    #"Kevin0"
 ]
 
 
