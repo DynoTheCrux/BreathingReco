@@ -49,9 +49,9 @@ names = [
     "Mati3",
     # "Mati1",
     # "Mati2",
-    "Alex0"
-    #"Christian0"
-    #"Kevin0"
+    "Alex0",
+    "Christian0",
+    "Kevin0"
 ]
 
 
