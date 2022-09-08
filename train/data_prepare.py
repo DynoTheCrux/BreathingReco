@@ -52,7 +52,8 @@ names = [
     # "Mati1",
     # "Mati2",
     "Alex0",
-    "Alex1"
+    "Alex1",
+    "Kevin1"
     # "Christian0",
     # "Kevin0"
 ]
