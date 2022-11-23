@@ -47,28 +47,28 @@ def augment_data(original_data, original_label):
     new_data.append(data)
     new_label.append(label)
     # Sequence shift
-    for num in range(5):  # pylint: disable=unused-variable
-      new_data.append((np.array(data, dtype=np.float32) +
-                       (random.random() - 0.5) * 4).tolist())
-      new_label.append(label)
-    # Random noise
-    tmp_data = [[0 for i in range(len(data[0]))] for j in range(len(data))]
-    for num in range(5):
-      for i in range(len(tmp_data)):
-        for j in range(len(tmp_data[i])):
-          tmp_data[i][j] = data[i][j] + 5 * random.random()
-      new_data.append(tmp_data)
-      new_label.append(label)
-    # Time warping
-    fractions = [(3, 2), (5, 3), (2, 3), (3, 4), (9, 5), (6, 5), (4, 5)]
-    for molecule, denominator in fractions:
-      wrapped_data = time_wrapping(molecule, denominator, data)
-      if len(wrapped_data) != 0:
-        new_data.append(wrapped_data)
-        new_label.append(label)
-    # Movement amplification
-    for molecule, denominator in fractions:
-      new_data.append(
-          (np.array(data, dtype=np.float32) * molecule / denominator).tolist())
-      new_label.append(label)
+#     for num in range(5):  # pylint: disable=unused-variable
+#       new_data.append((np.array(data, dtype=np.float32) +
+#                        (random.random() - 0.5) * 4).tolist())
+#       new_label.append(label)
+#     # Random noise
+#     tmp_data = [[0 for i in range(len(data[0]))] for j in range(len(data))]
+#     for num in range(5):
+#       for i in range(len(tmp_data)):
+#         for j in range(len(tmp_data[i])):
+#           tmp_data[i][j] = data[i][j] + 5 * random.random()
+#       new_data.append(tmp_data)
+#       new_label.append(label)
+#     # Time warping
+#     fractions = [(3, 2), (5, 3), (2, 3), (3, 4), (9, 5), (6, 5), (4, 5)]
+#     for molecule, denominator in fractions:
+#       wrapped_data = time_wrapping(molecule, denominator, data)
+#       if len(wrapped_data) != 0:
+#         new_data.append(wrapped_data)
+#         new_label.append(label)
+#     # Movement amplification
+#     for molecule, denominator in fractions:
+#       new_data.append(
+#           (np.array(data, dtype=np.float32) * molecule / denominator).tolist())
+#       new_label.append(label)
   return new_data, new_label
