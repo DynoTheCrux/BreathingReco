@@ -53,7 +53,8 @@ names = [
     # "Mati2",
     "Alex0",
     "Alex1",
-    "Kevin1" #--> some sequence length is wrong???
+    "Generated"
+    #"Kevin1" #--> some sequence length is wrong???
     # "Christian0",
     # "Kevin0"
 ]
