@@ -80,7 +80,7 @@ def build_lstm(seq_length):
       tf.keras.layers.Bidirectional(
           tf.keras.layers.LSTM(22),
           input_shape=(seq_length, 1)),  # output_shape=(batch, 44)
-      tf.keras.layers.Dense(4, activation="sigmoid")  # (batch, 4)
+      tf.keras.layers.Dense(2, activation="sigmoid")  # (batch, 4)
   ])
   model_path = os.path.join("./netmodels", "LSTM")
   print("Built LSTM.")
@@ -121,8 +121,8 @@ def train_net(
     kind):
   """Trains the model."""
   calculate_model_size(model)
-  epochs = 32
-  batch_size = 16
+  epochs = 50
+  batch_size = 64
   model.compile(optimizer="adam",
                 loss="sparse_categorical_crossentropy",
                 metrics=["accuracy"])
@@ -148,7 +148,7 @@ def train_net(
   pred = np.argmax(model.predict(test_data), axis=1)
   confusion = tf.math.confusion_matrix(labels=tf.constant(test_labels),
                                        predictions=tf.constant(pred),
-                                       num_classes=4)
+                                       num_classes=2)
   print(confusion)
   print("Loss {}, Accuracy {}".format(loss, acc))
   # Convert the model to the TensorFlow Lite format without quantization
