@@ -38,22 +38,23 @@ LABEL_NAME = "BreathingPattern"
 DATA_NAME = "LEAP"
 folders = ["Eupnea", "Apnoe"]
 names = [
+    "OG"
     # "Simon0",
     # "Simon1",
     # "Simon2",
     # "Simon3",
     # "Simon4",
     # "Simon5",
-    "Simon6",
-    "Simon7",
-    "Simon8",
-    "Mati3",
-    "Mati4",
-    # "Mati1",
-    # "Mati2",
-    "Alex0",
-    "Alex1",
-    "Generated"
+#     "Simon6",
+#     "Simon7",
+#     "Simon8",
+#     "Mati3",
+#     "Mati4",
+#     # "Mati1",
+#     # "Mati2",
+#     "Alex0",
+#     "Alex1",
+#     "Generated"
     #"Kevin1" #--> some sequence length is wrong???
     # "Christian0",
     # "Kevin0"
