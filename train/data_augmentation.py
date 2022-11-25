@@ -60,7 +60,7 @@ def augment_data(original_data, original_label):
       new_data.append(tmp_data)
       new_label.append(label)
 #     # Time warping
-#     fractions = [(3, 2), (5, 3), (2, 3), (3, 4), (9, 5), (6, 5), (4, 5)]
+    fractions = [(3, 2), (5, 3), (2, 3), (3, 4), (9, 5), (6, 5), (4, 5)]
 #     for molecule, denominator in fractions:
 #       wrapped_data = time_wrapping(molecule, denominator, data)
 #       if len(wrapped_data) != 0:
