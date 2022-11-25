@@ -121,8 +121,8 @@ def train_net(
     kind):
   """Trains the model."""
   calculate_model_size(model)
-  epochs = 70
-  batch_size = 32
+  epochs = 30
+  batch_size = 16
   model.compile(optimizer="adam",
                 loss="sparse_categorical_crossentropy",
                 metrics=["accuracy"])
