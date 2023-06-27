@@ -61,15 +61,15 @@ if __name__ == "__main__":
   data = read_data("./data/complete_data")
   train_names = [
     "Simon6",
-    "Simon7",
-    "Simon8",
+    "Mati3",
+    "Alex1",
     "Generated"
   ]
   valid_names = [
     "Alex0",
-    "Alex1"
+    "Simon7"
     ]
-  test_names = ["Mati4", "Mati3"]
+  test_names = ["Mati4", "Simon8"]
   train_data, valid_data, test_data = person_split(data, train_names,
                                                    valid_names, test_names)
   if not os.path.exists("./person_split"):
