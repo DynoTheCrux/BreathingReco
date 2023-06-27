@@ -60,7 +60,6 @@ def person_split(whole_data, train_names, valid_names, test_names):  # pylint: d
 if __name__ == "__main__":
   data = read_data("./data/complete_data")
   train_names = [
-  train_names = [
     "Simon6",
     "Simon7",
     "Simon8",
