@@ -38,26 +38,26 @@ LABEL_NAME = "BreathingPattern"
 DATA_NAME = "LEAP"
 folders = ["Eupnea", "Apnoe"]
 names = [
-    "OG"
+    # "OG" #old calib
     # "Simon0",
     # "Simon1",
     # "Simon2",
     # "Simon3",
     # "Simon4",
-    # "Simon5",
-#     "Simon6",
-#     "Simon7",
-#     "Simon8",
-#     "Mati3",
-#     "Mati4",
-#     # "Mati1",
-#     # "Mati2",
-#     "Alex0",
-#     "Alex1",
-#     "Generated"
+    # "Simon5", # until here
+    "Simon6",
+    "Simon7",
+    "Simon8",
+    "Mati3",
+    "Mati4",
+#     # "Mati1", #old calib
+#     # "Mati2", #old calib
+    "Alex0",
+    "Alex1",
+    "Generated"
     #"Kevin1" #--> some sequence length is wrong???
-    # "Christian0",
-    # "Kevin0"
+    # "Christian0", # problem
+    # "Kevin0" # problem
 ]
 
 
