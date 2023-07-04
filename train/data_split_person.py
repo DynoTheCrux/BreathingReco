@@ -60,16 +60,19 @@ def person_split(whole_data, train_names, valid_names, test_names):  # pylint: d
 if __name__ == "__main__":
   data = read_data("./data/complete_data")
   train_names = [
-    "Simon6",
-    "Mati3",
-    "Alex1",
+    "Subject06",
+    "Subject13",
+    "Subject21",
     "Generated"
   ]
   valid_names = [
-    "Alex0",
-    "Simon7"
+    "Subject20",
+    "Subject07"
     ]
-  test_names = ["Mati4", "Simon8"]
+  test_names = [
+    "Subject14", 
+    "Subject08"
+  ]
   train_data, valid_data, test_data = person_split(data, train_names,
                                                    valid_names, test_names)
   if not os.path.exists("./person_split"):
