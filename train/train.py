@@ -59,7 +59,7 @@ def build_cnn(seq_length):
       tf.keras.layers.Dropout(0.1),  # (batch, 42, 1, 8)
       tf.keras.layers.Conv2D(16, (4, 1), padding="same",
                              activation="relu"),  # (batch, 42, 1, 16)
-      tf.keras.layers.MaxPool2D((2, 1), padding="same"),  # (batch, 14, 1, 16)
+      # tf.keras.layers.MaxPool2D((2, 1), padding="same"),  # (batch, 14, 1, 16)
       tf.keras.layers.Dropout(0.1),  # (batch, 14, 1, 16)
       tf.keras.layers.Flatten(),  # (batch, 224)
       tf.keras.layers.Dense(16, activation="relu"),  # (batch, 16)
