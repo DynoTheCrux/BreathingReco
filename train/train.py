@@ -215,8 +215,8 @@ if __name__ == "__main__":
   print(train_data[0])
   print(model.predict(train_data[0]))
 
-  print("Start training...")
-  train_net(model, model_path, train_len, train_data, valid_len, valid_data,
-            test_len, test_data, args.model)
+  # print("Start training...")
+  # train_net(model, model_path, train_len, train_data, valid_len, valid_data,
+  #           test_len, test_data, args.model)
 
-  print("Training finished!")
+  # print("Training finished!")
