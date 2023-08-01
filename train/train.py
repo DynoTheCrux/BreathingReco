@@ -52,10 +52,10 @@ def build_cnn(seq_lenght):
   model = tf.keras.Sequential(
       tf.keras.layers.MaxPool2D((1, 1), padding="same"),  # (batch, 14, 1, 16)
   ])
-  # model_path = os.path.join("./netmodels", "CNN")
-  # print("Built CNN.")
-  # if not os.path.exists(model_path):
-  #   os.makedirs(model_path)
+  model_path = os.path.join("./netmodels", "CNN")
+  print("Built CNN.")
+  if not os.path.exists(model_path):
+    os.makedirs(model_path)
   # model.load_weights("./netmodels/CNN/weights.h5", by_name=True)
   return model, model_path
 
