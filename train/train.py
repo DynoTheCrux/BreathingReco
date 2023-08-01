@@ -47,40 +47,31 @@ def calculate_model_size(model):
   print("Model size:", sum(var_sizes) / 1024, "KB")
 
 
-def build_cnn(seq_lenght):
+def build_cnn(seq_length):
   """Builds a convolutional neural network in Keras."""
-  model = tf.keras.layers.MaxPool2D((1, 1), padding="same")
+  model = tf.keras.Sequential([
+      tf.keras.layers.Conv2D(
+          8, (4, 1),
+          padding="same",
+          activation="relu",
+          input_shape=(seq_length, 1, 1)),  # output_shape=(batch, 128, 3, 8)
+      tf.keras.layers.MaxPool2D((3, 1)),  # (batch, 42, 1, 8)
+      tf.keras.layers.Dropout(0.1),  # (batch, 42, 1, 8)
+      tf.keras.layers.Conv2D(16, (4, 1), padding="same",
+                             activation="relu"),  # (batch, 42, 1, 16)
+      tf.keras.layers.MaxPool2D((1, 1), padding="valid", name="2ndPooling"),  # (batch, 14, 1, 16)
+      tf.keras.layers.Dropout(0.1),  # (batch, 14, 1, 16)
+      tf.keras.layers.Flatten(),  # (batch, 224)
+      tf.keras.layers.Dense(16, activation="relu"),  # (batch, 16)
+      tf.keras.layers.Dropout(0.1),  # (batch, 16)
+      tf.keras.layers.Dense(2, activation="softmax")  # (batch, 4)
+  ])
   model_path = os.path.join("./netmodels", "CNN")
   print("Built CNN.")
   if not os.path.exists(model_path):
     os.makedirs(model_path)
+  # model.load_weights("./netmodels/CNN/weights.h5", by_name=True)
   return model, model_path
-
-# def build_cnn(seq_length):
-#   """Builds a convolutional neural network in Keras."""
-#   model = tf.keras.Sequential([
-#       tf.keras.layers.Conv2D(
-#           8, (4, 1),
-#           padding="same",
-#           activation="relu",
-#           input_shape=(seq_length, 1, 1)),  # output_shape=(batch, 128, 3, 8)
-#       tf.keras.layers.MaxPool2D((3, 1)),  # (batch, 42, 1, 8)
-#       tf.keras.layers.Dropout(0.1),  # (batch, 42, 1, 8)
-#       tf.keras.layers.Conv2D(16, (4, 1), padding="same",
-#                              activation="relu"),  # (batch, 42, 1, 16)
-#       tf.keras.layers.MaxPool2D((2, 1), padding="valid"),  # (batch, 14, 1, 16)
-#       tf.keras.layers.Dropout(0.1),  # (batch, 14, 1, 16)
-#       tf.keras.layers.Flatten(),  # (batch, 224)
-#       tf.keras.layers.Dense(16, activation="relu"),  # (batch, 16)
-#       tf.keras.layers.Dropout(0.1),  # (batch, 16)
-#       tf.keras.layers.Dense(2, activation="softmax")  # (batch, 4)
-#   ])
-#   model_path = os.path.join("./netmodels", "CNN")
-#   print("Built CNN.")
-#   if not os.path.exists(model_path):
-#     os.makedirs(model_path)
-#   # model.load_weights("./netmodels/CNN/weights.h5", by_name=True)
-#   return model, model_path
 
 
 def build_lstm(seq_length):
@@ -209,10 +200,14 @@ if __name__ == "__main__":
   print("Start to build net...")
   model, model_path = build_net(args, seq_length)
 
-  print(model.predict([12345]))
+  layer_name = "2ndPooling"
+  intermediate_layer_model = tf.keras.Model(inputs=model.input, outputs=model.get_layer(layer_name).output)
+  intermediate_output = intermediate_layer_model(np.linspace(1,1,200)
+  print(np.linspace(1,1,2o0))
+  print(intermediate_output)
+                                                 
+  print("Start training...")
+  train_net(model, model_path, train_len, train_data, valid_len, valid_data,
+            test_len, test_data, args.model)
 
-  # print("Start training...")
-  # train_net(model, model_path, train_len, train_data, valid_len, valid_data,
-  #           test_len, test_data, args.model)
-
-  # print("Training finished!")
+  print("Training finished!")
