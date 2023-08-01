@@ -209,8 +209,7 @@ if __name__ == "__main__":
   print("Start to build net...")
   model, model_path = build_net(args, seq_length)
 
-  print(train_data[0])
-  print(model.predict(train_data[0]))
+  print(model.predict([12345]))
 
   # print("Start training...")
   # train_net(model, model_path, train_len, train_data, valid_len, valid_data,
