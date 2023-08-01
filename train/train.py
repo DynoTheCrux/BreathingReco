@@ -49,7 +49,7 @@ def calculate_model_size(model):
 
 def build_cnn(seq_lenght):
   """Builds a convolutional neural network in Keras."""
-  model = tf.keras.Sequential(tf.keras.layers.MaxPool2D((1, 1), padding="same"))
+  model = tf.keras.layers.MaxPool2D((1, 1), padding="same")
   model_path = os.path.join("./netmodels", "CNN")
   print("Built CNN.")
   if not os.path.exists(model_path):
