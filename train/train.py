@@ -199,8 +199,6 @@ if __name__ == "__main__":
 
   print("Start to build net...")
   model, model_path = build_net(args, seq_length)
-
-  print(np.linspace(1,199,199))
   
   layer_name = "2ndPooling"
   intermediate_layer_model = tf.keras.Model(inputs=model.input, outputs=model.get_layer(layer_name).output)
@@ -208,7 +206,7 @@ if __name__ == "__main__":
   input_array = np.linspace(1,199,199)
   intermediate_output = intermediate_layer_model(tf.convert_to_tensor(input_array[None,:,None,None], dtype=tf.int64))
   
-  print(np.linspace(1,199,199))
+  print(tf.conver_to_tensor(input_array[None,:None,None], dtype=tf.int64))
   print(intermediate_output)
                                                  
   print("Start training...")
