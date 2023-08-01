@@ -205,7 +205,7 @@ if __name__ == "__main__":
   layer_name = "2ndPooling"
   intermediate_layer_model = tf.keras.Model(inputs=model.input, outputs=model.get_layer(layer_name).output)
   # intermediate_output = intermediate_layer_model(np.transpose(np.linspace(1,199,199)))
-  intermediate_output = intermediate_layer_model([1 2],[3 4],[5 6],[7 8])
+  intermediate_output = intermediate_layer_model([1, 2],[3, 4],[5, 6],[7, 8])
   
   print(np.linspace(1,199,199))
   print(intermediate_output)
