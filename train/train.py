@@ -122,7 +122,7 @@ def train_net(
     kind):
   """Trains the model."""
   calculate_model_size(model)
-  epochs = 50
+  epochs = 40
   batch_size = 32
   model.compile(optimizer="adam",
                 loss="sparse_categorical_crossentropy",
@@ -147,7 +147,6 @@ def train_net(
             callbacks=[tensorboard_callback])
   loss, acc = model.evaluate(test_data)
   pred = np.argmax(model.predict(test_data), axis=1)
-  print(test_labels)
   confusion = tf.math.confusion_matrix(labels=tf.constant(test_labels),
                                        predictions=tf.constant(pred),
                                        num_classes=2)
