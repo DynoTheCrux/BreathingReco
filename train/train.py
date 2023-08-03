@@ -59,8 +59,8 @@ def build_cnn(seq_length):
       tf.keras.layers.Dropout(0.1),  # (batch, 42, 1, 8)
       tf.keras.layers.Conv2D(16, (4, 1), padding="same",
                              activation="relu"),  # (batch, 42, 1, 16)
-      tf.keras.layers.MaxPool2D((2, 1), padding="same", name="2ndPooling"),  # (batch, 14, 1, 16)
-      # tf.keras.layers.AveragePooling2D(pool_size=(2, 1), padding="valid"),
+      # tf.keras.layers.MaxPool2D((2, 1), padding="same", name="2ndPooling"),  # (batch, 14, 1, 16)
+      tf.keras.layers.AveragePooling2D(pool_size=(2, 1), padding="valid"),
       tf.keras.layers.Dropout(0.1),  # (batch, 14, 1, 16)
       tf.keras.layers.Flatten(),  # (batch, 224)
       tf.keras.layers.Dense(16, activation="relu"),  # (batch, 16)
@@ -122,7 +122,7 @@ def train_net(
     kind):
   """Trains the model."""
   calculate_model_size(model)
-  epochs = 50
+  epochs = 45
   batch_size = 32
   model.compile(optimizer="adam",
                 loss="sparse_categorical_crossentropy",
