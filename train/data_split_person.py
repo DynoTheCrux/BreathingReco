@@ -52,7 +52,7 @@ def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disabl
     else:
       temp_data.append(data)
       
-  kf = KFold(n_splits=3)
+  kf = KFold(n_splits=55)
   for valid, test in kf.split(temp_data):
     # print("%s %s" % (valid, test))
     valid_data.append(list(np.array(temp_data)[valid]))
@@ -100,8 +100,8 @@ if __name__ == "__main__":
     "Subject14", 
     "Subject08"
   ]
-  train_data, valid_data, test_data = person_split(data, train_names, valid_names, test_names)
-  # train_data, valid_data, test_data = k_split(data, train_names, valid_names, test_names)
+  # train_data, valid_data, test_data = person_split(data, train_names, valid_names, test_names)
+  train_data, valid_data, test_data = k_split(data, train_names, valid_names, test_names)
   if not os.path.exists("./person_split"):
     os.makedirs("./person_split")
   write_data(train_data, "./person_split/train")
