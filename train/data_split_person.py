@@ -66,7 +66,7 @@ from data_split import write_data
 
 def person_split(whole_data, train_names, valid_names, test_names):  # pylint: disable=redefined-outer-name
   """Split data by person."""
-  random.seed(30)
+  seed = random.seed(30)
   random.shuffle(whole_data)
   train_data = []  # pylint: disable=redefined-outer-name
   valid_data = []  # pylint: disable=redefined-outer-name
@@ -81,6 +81,7 @@ def person_split(whole_data, train_names, valid_names, test_names):  # pylint: d
   print("train_length:" + str(len(train_data)))
   print("valid_length:" + str(len(valid_data)))
   print("test_length:" + str(len(test_data)))
+  print("seed:" + str(seed))    
   return train_data, valid_data, test_data
 
 
