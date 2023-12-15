@@ -211,6 +211,9 @@ if __name__ == "__main__":
   # print(intermediate_output)
                                                  
   print("Start training...")
+  SEED = 42
+  tf.config.experimental.enable_op_determinism()
+  tf.random.set_seed(SEED)
   train_net(model, model_path, train_len, train_data, valid_len, valid_data,
             test_len, test_data, args.model)
 
