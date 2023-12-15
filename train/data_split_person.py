@@ -38,14 +38,13 @@ from data_split import read_data
 from data_split import write_data
 
 def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disable=redefined-outer-name
-  """Split data by person."""
   random.seed(30)
   random.shuffle(whole_data)
   train_data = []  # pylint: disable=redefined-outer-name
   valid_data = []  # pylint: disable=redefined-outer-name
   test_data = []  # pylint: disable=redefined-outer-name
 
-  kf = KFold(n_splits=3)
+  kf = KFold(n_splits=2)
   for train, valid, test in kf.split(whole_data):
     train_data.append(whole_data[train])
     valid_data.append(whole_data[valid])
