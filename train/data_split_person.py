@@ -56,7 +56,7 @@ def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disabl
   for valid, test in kf.split(temp_data):
     # print("%s %s" % (valid, test))
     valid_data.append(np.array(temp_data)[valid])
-    test_data.append(temp_data[test])
+    test_data.append(np.array(temp_data)[test])
         
   print("train_length:" + str(len(train_data)))
   print("valid_length:" + str(len(valid_data)))
