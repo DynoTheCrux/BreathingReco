@@ -52,7 +52,7 @@ def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disabl
     else:
       temp_data.append(data)
       
-  kf = KFold(n_splits=2)
+  kf = KFold(n_splits=3)
   for valid, test in kf.split(temp_data):
     # print("%s %s" % (valid, test))
     valid_data.append(np.array(temp_data)[valid])
