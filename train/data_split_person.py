@@ -34,6 +34,7 @@ from __future__ import print_function
 import os
 import random
 from sklearn.model_selection import KFold, cross_val_score
+import numpy as np
 from data_split import read_data
 from data_split import write_data
 
@@ -53,9 +54,9 @@ def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disabl
       
   kf = KFold(n_splits=2)
   for valid, test in kf.split(temp_data):
-    print("%s %s" % (valid, test))
-    # valid_data.append(temp_data[valid])
-    # test_data.append(temp_data[test])
+    # print("%s %s" % (valid, test))
+    valid_data.append(np.array(temp_data)[valid])
+    test_data.append(temp_data[test])
         
   print("train_length:" + str(len(train_data)))
   print("valid_length:" + str(len(valid_data)))
