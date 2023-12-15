@@ -100,8 +100,8 @@ if __name__ == "__main__":
     "Subject14", 
     "Subject08"
   ]
-  # train_data, valid_data, test_data = person_split(data, train_names, valid_names, test_names)
-  train_data, valid_data, test_data = k_split(data, train_names, valid_names, test_names)
+  train_data, valid_data, test_data = person_split(data, train_names, valid_names, test_names)
+  # train_data, valid_data, test_data = k_split(data, train_names, valid_names, test_names)
   if not os.path.exists("./person_split"):
     os.makedirs("./person_split")
   write_data(train_data, "./person_split/train")
