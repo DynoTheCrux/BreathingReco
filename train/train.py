@@ -49,16 +49,19 @@ def calculate_model_size(model):
 
 def build_cnn(seq_length):
   """Builds a convolutional neural network in Keras."""
+  SEED = 42
+  tf.config.experimental.enable_op_determinism()
+  tf.random.set_seed(SEED)
   model = tf.keras.Sequential([
       tf.keras.layers.Conv2D(
           8, (4, 1),
           padding="same",
           activation="relu",
-          input_shape=(seq_length, 1, 1)),  # output_shape=(batch, 128, 3, 8)
+          input_shape=(seq_length, 1, 1),kernel_initializer=tf.keras.initializers.GlorotUniform(seed=SEED)),  # output_shape=(batch, 128, 3, 8)
       tf.keras.layers.MaxPool2D((3, 1)),  # (batch, 42, 1, 8)
       tf.keras.layers.Dropout(0.1),  # (batch, 42, 1, 8)
       tf.keras.layers.Conv2D(16, (4, 1), padding="same",
-                             activation="relu"),  # (batch, 42, 1, 16)
+                             activation="relu",kernel_initializer=tf.keras.initializers.GlorotUniform(seed=SEED)),  # (batch, 42, 1, 16)
       tf.keras.layers.MaxPool2D((2, 1), padding="same", name="2ndPooling"),  # (batch, 14, 1, 16)
       tf.keras.layers.AveragePooling2D(pool_size=(2, 1), padding="same"),
       tf.keras.layers.Dropout(0.1),  # (batch, 14, 1, 16)
@@ -211,9 +214,7 @@ if __name__ == "__main__":
   # print(intermediate_output)
                                                  
   print("Start training...")
-  SEED = 42
-  tf.config.experimental.enable_op_determinism()
-  tf.random.set_seed(SEED)
+  
   train_net(model, model_path, train_len, train_data, valid_len, valid_data,
             test_len, test_data, args.model)
 
