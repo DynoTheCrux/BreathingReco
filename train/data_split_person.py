@@ -38,30 +38,30 @@ import numpy as np
 from data_split import read_data
 from data_split import write_data
 
-def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disable=redefined-outer-name
-  random.seed(30)
-  random.shuffle(whole_data)
-  train_data = []  # pylint: disable=redefined-outer-name
-  valid_data = []  # pylint: disable=redefined-outer-name
-  test_data = []  # pylint: disable=redefined-outer-name
-  temp_data = []
+# def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disable=redefined-outer-name
+#   random.seed(30)
+#   random.shuffle(whole_data)
+#   train_data = []  # pylint: disable=redefined-outer-name
+#   valid_data = []  # pylint: disable=redefined-outer-name
+#   test_data = []  # pylint: disable=redefined-outer-name
+#   temp_data = []
 
-  for idx, data in enumerate(whole_data):  # pylint: disable=redefined-outer-name,unused-variable
-    if data["name"] in train_names:
-      train_data.append(data)
-    else:
-      temp_data.append(data)
+#   for idx, data in enumerate(whole_data):  # pylint: disable=redefined-outer-name,unused-variable
+#     if data["name"] in train_names:
+#       train_data.append(data)
+#     else:
+#       temp_data.append(data)
       
-  kf = KFold(n_splits=55)
-  for valid, test in kf.split(temp_data):
-    # print("%s %s" % (valid, test))
-    valid_data.append(list(np.array(temp_data)[valid]))
-    test_data.append(list(np.array(temp_data)[test]))
+#   kf = KFold(n_splits=55)
+#   for valid, test in kf.split(temp_data):
+#     # print("%s %s" % (valid, test))
+#     valid_data.append(list(np.array(temp_data)[valid]))
+#     test_data.append(list(np.array(temp_data)[test]))
         
-  print("train_length:" + str(len(train_data)))
-  print("valid_length:" + str(len(valid_data)))
-  print("test_length:" + str(len(test_data)))
-  return train_data, valid_data, test_data
+#   print("train_length:" + str(len(train_data)))
+#   print("valid_length:" + str(len(valid_data)))
+#   print("test_length:" + str(len(test_data)))
+#   return train_data, valid_data, test_data
 
 
 def person_split(whole_data, train_names, valid_names, test_names):  # pylint: disable=redefined-outer-name
