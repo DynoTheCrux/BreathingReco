@@ -47,7 +47,7 @@ def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disabl
   for idx, data in enumerate(whole_data):  # pylint: disable=redefined-outer-name,unused-variable
     if data["name"] in train_names:
       train_data.append(data)
-    else
+    else:
       kf = KFold(n_splits=2)
       for valid, test in kf.split(whole_data):
         valid_data.append(whole_data[valid])
