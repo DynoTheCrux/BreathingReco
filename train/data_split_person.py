@@ -33,8 +33,42 @@ from __future__ import print_function
 
 import os
 import random
+from sklearn.model_selection import KFold, cross_val_score
 from data_split import read_data
 from data_split import write_data
+
+def k_split(whole_data, train_names, valid_names, test_names):  # pylint: disable=redefined-outer-name
+  """Split data by person."""
+  random.seed(30)
+  random.shuffle(whole_data)
+  train_data = []  # pylint: disable=redefined-outer-name
+  valid_data = []  # pylint: disable=redefined-outer-name
+  test_data = []  # pylint: disable=redefined-outer-name
+
+  kf = KFold(n_splits=3)
+  for train, valid, test in kf.split(whole_data):
+    train_data.append(whole_data[train])
+    valid_data.append(whole_data[valid])
+    test_data.append(whole_data[test])
+
+  print("train_length:" + str(len(train_data)))
+  print("valid_length:" + str(len(valid_data)))
+  print("test_length:" + str(len(test_data)))
+  return train_data, valid_data, test_data
+
+
+  
+  for idx, data in enumerate(whole_data):  # pylint: disable=redefined-outer-name,unused-variable
+    if data["name"] in train_names:
+      train_data.append(data)
+    elif data["name"] in valid_names:
+      valid_data.append(data)
+    elif data["name"] in test_names:
+      test_data.append(data)
+  print("train_length:" + str(len(train_data)))
+  print("valid_length:" + str(len(valid_data)))
+  print("test_length:" + str(len(test_data)))
+  return train_data, valid_data, test_data
 
 
 def person_split(whole_data, train_names, valid_names, test_names):  # pylint: disable=redefined-outer-name
@@ -62,8 +96,8 @@ if __name__ == "__main__":
   train_names = [
     "Subject06",
     "Subject13",
-    "Subject21",
-    "Generated"
+    "Subject21"
+    # "Generated"
   ]
   valid_names = [
     "Subject20",
@@ -73,8 +107,8 @@ if __name__ == "__main__":
     "Subject14", 
     "Subject08"
   ]
-  train_data, valid_data, test_data = person_split(data, train_names,
-                                                   valid_names, test_names)
+  # train_data, valid_data, test_data = person_split(data, train_names, valid_names, test_names)
+  train_data, valid_data, test_data = k_split(data, train_names, valid_names, test_names)
   if not os.path.exists("./person_split"):
     os.makedirs("./person_split")
   write_data(train_data, "./person_split/train")
