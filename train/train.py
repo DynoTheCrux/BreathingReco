@@ -125,9 +125,9 @@ def train_net(
     kind):
   """Trains the model."""
   calculate_model_size(model)
-  epochs = 50
+  epochs = 85
   batch_size = 32
-  model.compile(optimizer="adam",
+  model.compile(tf.keras.optimizers.Adam(learning_rate=5e-4),
                 loss="sparse_categorical_crossentropy",
                 metrics=["accuracy"])
   if kind == "CNN":
