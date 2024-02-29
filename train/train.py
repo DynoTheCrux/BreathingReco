@@ -27,10 +27,16 @@ import os
 from data_load import DataLoader
 
 import numpy as np
+import statistics
 import tensorflow as tf
+from tensorflow.python.ops.nn_impl import log_poisson_loss
 
 logdir = "logs/scalars/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
+
+accuracies = []
+conf_matrices = []    
+
 
 
 def reshape_function(data, label):
@@ -155,33 +161,35 @@ def train_net(
                                        num_classes=2)
   print(confusion)
   print("Loss {}, Accuracy {}".format(loss, acc))
+  accuracies.append(acc)
+  conf_matrices.append(confusion)
   # Convert the model to the TensorFlow Lite format without quantization
-  converter = tf.lite.TFLiteConverter.from_keras_model(model)
+  # converter = tf.lite.TFLiteConverter.from_keras_model(model)
   # only needed for LSTM
   # converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
   # converter._experimental_lower_tensor_list_ops = False
-  tflite_model = converter.convert()
+  # tflite_model = converter.convert()
 
   # Save the model to disk
-  open("model.tflite", "wb").write(tflite_model)
+  # open("model.tflite", "wb").write(tflite_model)
 
   # Convert the model to the TensorFlow Lite format with quantization
-  converter = tf.lite.TFLiteConverter.from_keras_model(model)
-  converter.optimizations = [tf.lite.Optimize.DEFAULT]
+  # converter = tf.lite.TFLiteConverter.from_keras_model(model)
+  # converter.optimizations = [tf.lite.Optimize.DEFAULT]
   # only needed for LSTM
   # converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
   # converter._experimental_lower_tensor_list_ops = False
-  tflite_model = converter.convert()
+  # tflite_model = converter.convert()
 
   # Save the model to disk
-  open("model_quantized.tflite", "wb").write(tflite_model)
+  # open("model_quantized.tflite", "wb").write(tflite_model)
 
-  basic_model_size = os.path.getsize("model.tflite")
-  print("Basic model is %d bytes" % basic_model_size)
-  quantized_model_size = os.path.getsize("model_quantized.tflite")
-  print("Quantized model is %d bytes" % quantized_model_size)
-  difference = basic_model_size - quantized_model_size
-  print("Difference is %d bytes" % difference)
+  # basic_model_size = os.path.getsize("model.tflite")
+  # print("Basic model is %d bytes" % basic_model_size)
+  # quantized_model_size = os.path.getsize("model_quantized.tflite")
+  # print("Quantized model is %d bytes" % quantized_model_size)
+  # difference = basic_model_size - quantized_model_size
+  # print("Difference is %d bytes" % difference)
 
 
 if __name__ == "__main__":
@@ -212,10 +220,24 @@ if __name__ == "__main__":
   
   # print(tf.convert_to_tensor(input_array[None,:None,None], dtype=tf.int64))
   # print(intermediate_output)
-                                                 
+
+                         
+
   print("Start training...")
-  
-  train_net(model, model_path, train_len, train_data, valid_len, valid_data,
-            test_len, test_data, args.model)
+  for x in range(100):
+    train_net(model, model_path, train_len, train_data, valid_len, valid_data,
+              test_len, test_data, args.model)
+    
+
+  for i in range(100):
+      print(f"Iteration {i+1}: Accuracy = {accuracies[i]}")
+      print(f"Confusion Matrix:\n{conf_matrices[i]}\n")
+
+  mean_value = statistics.mean(accuracies)
+  std_deviation = statistics.stdev(accuracies)
+
+  print(f"Mean: {mean_value}")
+  print(f"Standard Deviation: {std_deviation}")
+
 
   print("Training finished!")
